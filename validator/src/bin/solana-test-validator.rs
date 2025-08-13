@@ -364,7 +364,7 @@ fn main() {
             ("mint_address", "--mint"),
             ("ticks_per_slot", "--ticks-per-slot"),
             ("slots_per_epoch", "--slots-per-epoch"),
-            ("faucet_sol", "--faucet-sol"),
+            ("faucet_sol", "--faucet-rox"),
             ("deactivate_feature", "--deactivate-feature"),
         ] {
             if matches.is_present(name) {
@@ -374,7 +374,7 @@ fn main() {
     } else if random_mint {
         println_name_value(
             "\nNotice!",
-            "No wallet available. `solana airdrop` localnet SOL after creating one\n",
+            "No wallet available. `solana airdrop` localnet ROX after creating one\n",
         );
     }
 

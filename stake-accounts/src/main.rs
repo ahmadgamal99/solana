@@ -263,8 +263,8 @@ fn main() -> Result<(), Box<dyn Error>> {
             );
             let balances = get_balances(&client, addresses)?;
             let lamports: u64 = balances.into_iter().map(|(_, bal)| bal).sum();
-            let sol = lamports_to_rox(lamports);
-            println!("{sol} SOL");
+            let rox = lamports_to_rox(lamports);
+            println!("{rox} ROX");
         }
         Command::Authorize(args) => {
             process_authorize_stake_accounts(&client, &args)?;

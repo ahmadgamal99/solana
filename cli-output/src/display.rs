@@ -53,8 +53,8 @@ pub fn build_balance_message_with_config(
     let value = if config.use_lamports_unit {
         lamports.to_string()
     } else {
-        let sol = lamports_to_rox(lamports);
-        let sol_str = format!("{sol:.9}");
+        let rox = lamports_to_rox(lamports);
+        let sol_str = format!("{rox:.9}");
         if config.trim_trailing_zeros {
             sol_str
                 .trim_end_matches('0')
@@ -69,7 +69,7 @@ pub fn build_balance_message_with_config(
             let ess = if lamports == 1 { "" } else { "s" };
             format!(" lamport{ess}")
         } else {
-            " SOL".to_string()
+            " ROX".to_string()
         }
     } else {
         "".to_string()

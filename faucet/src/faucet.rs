@@ -1,6 +1,6 @@
-//! The `faucet` module provides an object for launching a Solana Faucet,
+//! The `faucet` module provides an object for launching a Rox Faucet,
 //! which is the custodian of any remaining lamports in a mint.
-//! The Solana Faucet builds and sends airdrop transactions,
+//! The Rox Faucet builds and sends airdrop transactions,
 //! checking requests against a single-request cap and a per-IP limit
 //! for a given time time_slice.
 
@@ -126,7 +126,7 @@ impl Faucet {
         if let Some((per_request_cap, per_time_cap)) = per_request_cap.zip(per_time_cap) {
             if per_time_cap < per_request_cap {
                 warn!(
-                    "per_time_cap {} SOL < per_request_cap {} SOL; \
+                    "per_time_cap {} ROX < per_request_cap {} ROX; \
                     maximum single requests will fail",
                     lamports_to_rox(per_time_cap),
                     lamports_to_rox(per_request_cap),
@@ -172,7 +172,7 @@ impl Faucet {
     /// Checks per-request and per-time-ip limits; if both pass, this method returns a signed
     /// SystemProgram::Transfer transaction from the faucet keypair to the requested recipient. If
     /// the request exceeds this per-request limit, this method returns a signed SPL Memo
-    /// transaction with the memo: `"request too large; req: <REQUEST> SOL cap: <CAP> SOL"`
+    /// transaction with the memo: `"request too large; req: <REQUEST> ROX cap: <CAP> ROX"`
     pub fn build_airdrop_transaction(
         &mut self,
         req: FaucetRequest,
@@ -187,7 +187,7 @@ impl Faucet {
             } => {
                 let mint_pubkey = self.faucet_keypair.pubkey();
                 info!(
-                    "Requesting airdrop of {} SOL to {:?}",
+                    "Requesting airdrop of {} ROX to {:?}",
                     lamports_to_rox(lamports),
                     to
                 );
