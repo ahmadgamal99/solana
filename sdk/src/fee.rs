@@ -1,6 +1,6 @@
 //! Fee structures.
 
-use crate::native_token::sol_to_lamports;
+use crate::native_token::rox_to_lamports;
 #[cfg(not(target_os = "solana"))]
 use solana_program::message::SanitizedMessage;
 
@@ -61,12 +61,12 @@ impl FeeStructure {
             .iter()
             .map(|(limit, sol)| FeeBin {
                 limit: *limit,
-                fee: sol_to_lamports(*sol),
+                fee: rox_to_lamports(*sol),
             })
             .collect::<Vec<_>>();
         FeeStructure {
-            lamports_per_signature: sol_to_lamports(sol_per_signature),
-            lamports_per_write_lock: sol_to_lamports(sol_per_write_lock),
+            lamports_per_signature: rox_to_lamports(sol_per_signature),
+            lamports_per_write_lock: rox_to_lamports(sol_per_write_lock),
             compute_fee_bins,
         }
     }

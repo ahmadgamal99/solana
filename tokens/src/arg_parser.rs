@@ -13,7 +13,7 @@ use {
     },
     solana_cli_config::CONFIG_FILE,
     solana_remote_wallet::remote_wallet::maybe_wallet_manager,
-    solana_sdk::native_token::sol_to_lamports,
+    solana_sdk::native_token::rox_to_lamports,
     std::{error::Error, ffi::OsString, process::exit},
 };
 
@@ -439,7 +439,7 @@ fn parse_distribute_tokens_args(
         fee_payer,
         stake_args: None,
         spl_token_args: None,
-        transfer_amount: value_of(matches, "transfer_amount").map(sol_to_lamports),
+        transfer_amount: value_of(matches, "transfer_amount").map(rox_to_lamports),
     })
 }
 
@@ -478,7 +478,7 @@ fn parse_create_stake_args(
         .transpose()?;
 
     let stake_args = StakeArgs {
-        unlocked_sol: sol_to_lamports(value_t_or_exit!(matches, "unlocked_sol", f64)),
+        unlocked_sol: rox_to_lamports(value_t_or_exit!(matches, "unlocked_sol", f64)),
         lockup_authority,
         sender_stake_args: None,
     };
@@ -562,7 +562,7 @@ fn parse_distribute_stake_args(
         rent_exempt_reserve: None,
     };
     let stake_args = StakeArgs {
-        unlocked_sol: sol_to_lamports(value_t_or_exit!(matches, "unlocked_sol", f64)),
+        unlocked_sol: rox_to_lamports(value_t_or_exit!(matches, "unlocked_sol", f64)),
         lockup_authority: lockup_authority_address,
         sender_stake_args: Some(sender_stake_args),
     };
