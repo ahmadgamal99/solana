@@ -7,7 +7,7 @@ use {
     },
 };
 
-const SOL_SYMBOL: &str = "◎";
+const ROX_SYMBOL: &str = "ROX";
 
 #[derive(PartialEq, Eq)]
 pub enum TokenType {
@@ -26,7 +26,7 @@ impl Token {
         match &self.token_type {
             TokenType::Rox => {
                 let amount = lamports_to_rox(self.amount);
-                write!(f, "{SOL_SYMBOL}{amount}")
+                write!(f, "{ROX_SYMBOL}{amount}")
             }
             TokenType::SplToken => {
                 let amount = real_number_string_trimmed(self.amount, self.decimals);
